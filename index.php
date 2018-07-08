@@ -68,6 +68,8 @@ function output_txt($redirect = false){
         $_POST['pay'] = 'off';}
     if(empty($_POST['DO'])){
         $_POST['DO'] = 'off';}
+    if(empty($_POST['delimeter'])){
+        $_POST['delimeter'] = ' ';}
     if(!empty($_POST)){
         foreach($_POST as $key=>$value){
             if(!empty($_POST[$key])){
@@ -80,10 +82,10 @@ function output_txt($redirect = false){
                         $word_1 = year_word($_POST['age']);
                         $word_2 = year_word2($_POST['age'], 'do');
                         if($_POST['DO'] == 'on'){
-                            $out_1 []= 'Вам '.$word_1.' '.$_POST['age'].' (по функции №2- '.$word_2.')';
+                            $out_1 []= 'Вам '.$word_1.$_POST['delimeter'].$_POST['age'].' (по функции №2- '.$word_2.')';
                             $out_2 []= '('.$word_2.').';
                         }else{
-                            $out_1 []= 'Вам '.$_POST['age'].' '.$word_1.' (по функции №2- '.$word_2.')';
+                            $out_1 []= 'Вам '.$_POST['age'].$_POST['delimeter'].$word_1.' (по функции №2- '.$word_2.')';
                             $out_2 []= '('.$word_2.').';
                         };
                         break;
@@ -143,6 +145,10 @@ if (empty($_POST)){?>
                 <input type="checkbox" name="DO" class="form_input" <?php echo $checked; ?>>
                 Слово "год(года/лет)" поставить перед числом
             </label>
+        </div>
+        <div class="form form_group">
+            <label for="" class="form_label">Разделитель между годами и значением</label>
+            <input type="text" name="delimeter" class="form_input" value="<?php echo echo_var('FIO'); ?>">
         </div>
         <button class="form_button">OK</button>
     </form>
