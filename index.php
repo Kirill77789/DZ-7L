@@ -107,13 +107,26 @@ function output_txt($redirect = false){
     $out_1 = implode(' ',$out_1);
     $out_2 = implode(' ',$out_2);
     $answer = file_get_contents('answer.txt');
-    file_put_contents('answer.txt', $answer.$out_2."\n");
+    file_put_contents('answer.txt', $out_2."\n".$answer);
     if($redirect == true){
         header('location: ?');
     }else{
         echo $out_1;
     };
+    $per = fopen('answer.txt', 'r');
+    $matr = [];
+    while (!feof($per)){
+        $line = fgets($per, 1024);
+        $matr []= $line;
+    };
+    $arr=[];
+    for($i = sizeof($matr)-1; $i > (sizeof($matr)-6) ;$i--){
+        $arr[] = $matr[$i];
+    };
+    $matr = implode('<br>', $arr);
+    echo '<br>'.$matr;
 };
+
 if (empty($_POST)){?>
     <form action="" method="post">
         <div class="form form_group">
