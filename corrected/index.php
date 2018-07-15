@@ -35,6 +35,7 @@ function year_word2($age, $sequence){   //вторая функция для н�
     }else{
         $znach = $age % 10;
     };
+
     switch($znach){
         case ($ar_1[(array_search($znach, $ar_1))]):
             $word = 'лет';
